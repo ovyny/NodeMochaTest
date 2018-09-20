@@ -23,7 +23,7 @@ it("works", () => {
         }
     ];
 
-    tests.forEach(test=>{
+    tests.forEach(test => {
         expect(resolveObjects(test.input)).toEqual(test.output);
     });
 });

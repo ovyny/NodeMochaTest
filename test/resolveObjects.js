@@ -3,10 +3,9 @@ const deepmerge = require('deepmerge');
 module.exports = function(obj) {
     let result = {};
     for (let prop in obj) {
+        let val = obj[prop];
         if (typeof prop === "string") {
             let propsArray = prop.split('.');
-            let val = obj[prop];
-            let verif = val;
             if (propsArray.length > 1) {
                 while(propsArray.length > 0){
                     let saveObj = {};
@@ -19,6 +18,10 @@ module.exports = function(obj) {
                 saveObj[prop] = val;
                 result = deepmerge(result, saveObj);
             }
+        } else {
+            let saveObj = {};
+            saveObj[prop] = val;
+            result = deepmerge(result, saveObj);
         }
     }
 
